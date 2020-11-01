@@ -2,7 +2,8 @@
 <div class="alert" *ngIf="validador==true">
     <h5>{{error}}</h5>
 </div>
-<div>
+<body class="center-form">
+<div class="center-form">
   <form [formGroup]="formSimulacao" class="fc">
           <label> Nome da Pessoa: <input type="text" formControlName="nomePessoa"> </label><br>
           <label> CPF: <input type="text" formControlName="cpf" mask="000.000.000-00"> </label> <br>
@@ -14,10 +15,12 @@
             <button mat-raised-button color="primary" (click)="onSubmit()">Simular</button>
           </div>
      </form>
+
+     
+
 </div>
 <div *ngIf="resultadoPost==true"> 
   <hr class="hr">
-  <div>
   <h1>Resultado Simulação</h1>
     <div class="resultadoCentralizado">
       <h5>Valor Total Premio: {{valorTotalPremio}}</h5><br>
@@ -25,3 +28,6 @@
     </div>
   <hr class="hr">
 </div>
+</body>
+
+
