@@ -1,0 +1,22 @@
+<h1>Simulação Seguro Pretamista</h1>
+
+
+<div>
+  <form [formGroup]="formSimulacao" class="fc">
+          <label> Nome da Pessoa: <input type="text" formControlName="nomePessoa"> </label><br>
+          <label> CPF: <input type="text" formControlName="cpf"> </label> <br>
+          <label> Valor Segurado: <input type="valor" formControlName="valorSegurado"> </label> <br>
+          <label> Número Contrato Emprestimo: <input type="text" formControlName="numeroContratoEmprestimo"> </label> <br>
+          <label> Fim Contrato Emprestimo: <input type="date" formControlName="fimContratoEmprestimo"> </label> <br>
+          <label> Data Nascimento: <input type="date" formControlName="dataNascimento"> </label> <br>
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="onSubmit()">Simular</button>
+          </div>
+          
+
+  </form>
+</div>
+<hr class="hr">
+<h1>Resultado Simulação</h1>
+<hr class="hr">
+
