@@ -1,7 +1,7 @@
 export interface SimulacaoInsert {
     nomePessoa: string;
     cpf: string;
-    valorSegurado: number;
+    valorSegurado: string;
     numeroContratoEmprestimo: string;
     fimContratoEmprestimo: string;
     dataNascimento: string;

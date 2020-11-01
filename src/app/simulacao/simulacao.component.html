@@ -1,22 +1,27 @@
 <h1>Simulação Seguro Pretamista</h1>
-
-
+<div class="alert" *ngIf="validador==true">
+    <h5>{{error}}</h5>
+</div>
 <div>
   <form [formGroup]="formSimulacao" class="fc">
           <label> Nome da Pessoa: <input type="text" formControlName="nomePessoa"> </label><br>
-          <label> CPF: <input type="text" formControlName="cpf"> </label> <br>
-          <label> Valor Segurado: <input type="valor" formControlName="valorSegurado"> </label> <br>
-          <label> Número Contrato Emprestimo: <input type="text" formControlName="numeroContratoEmprestimo"> </label> <br>
+          <label> CPF: <input type="text" formControlName="cpf" mask="000.000.000-00"> </label> <br>
+          <label> Valor Segurado: R$<input type="valor" [allowNegativeNumbers]="false" mask="separator.2" formControlName="valorSegurado"> </label> <br>
+          <label> Número Contrato Emprestimo: <input type="text"  formControlName="numeroContratoEmprestimo"> </label> <br>
           <label> Fim Contrato Emprestimo: <input type="date" formControlName="fimContratoEmprestimo"> </label> <br>
           <label> Data Nascimento: <input type="date" formControlName="dataNascimento"> </label> <br>
           <div class="example-button-row">
             <button mat-raised-button color="primary" (click)="onSubmit()">Simular</button>
           </div>
-          
-
-  </form>
+     </form>
 </div>
-<hr class="hr">
-<h1>Resultado Simulação</h1>
-<hr class="hr">
-
+<div *ngIf="resultadoPost==true"> 
+  <hr class="hr">
+  <div>
+  <h1>Resultado Simulação</h1>
+    <div class="resultadoCentralizado">
+      <h5>Valor Total Premio: {{valorTotalPremio}}</h5><br>
+      <h5>Produto Escolhido: {{produtoEscolhido}}</h5><br>
+    </div>
+  <hr class="hr">
+</div>

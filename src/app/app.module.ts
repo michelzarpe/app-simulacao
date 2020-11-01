@@ -50,6 +50,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { SimulacaoComponent } from './simulacao/simulacao.component';
 import { ListaSimulacaoComponent } from './lista-simulacao/lista-simulacao.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { ListaSimulacaoComponent } from './lista-simulacao/lista-simulacao.compo
     ListaSimulacaoComponent
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
