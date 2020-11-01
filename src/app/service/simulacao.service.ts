@@ -20,7 +20,7 @@ export class SimulacaoService {
 
 
 createSimulacao(obj: SimulacaoInsert){
-  return this.http.post<SimulacaoInsertRet>(`${API_CONFIG.baseUrl}/simulacao`, obj, {observe: "response"});
+  return this.http.post(`${API_CONFIG.baseUrl}/simulacao`, obj, {observe: "response"});
 }
 
 }

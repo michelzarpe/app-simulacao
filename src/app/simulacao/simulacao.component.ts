@@ -3,6 +3,8 @@ import {SimulacaoService} from 'src/app/service/simulacao.service';
 import { take } from 'rxjs/operators';
 import  {  FormBuilder,  FormGroup, Validators  }  from  '@angular/forms';
 import { SimulacaoInsert } from '../modal/simulacao-insert';
+import {SimulacaoRet} from '../modal/simulacao-insert-retorno';
+import {RetornoError} from '../modal/retorno-error';
 
 @Component({
   selector: 'app-simulacao',
@@ -16,6 +18,8 @@ export class SimulacaoComponent implements OnInit {
   valorTotalPremio:string;
   produtoEscolhido:string;
   formSimulacao: FormGroup;
+  simulacaoInsertRet:SimulacaoRet;
+  errorRetorno:RetornoError;
  
   constructor(public simulacaoService:SimulacaoService,public formBuilder: FormBuilder){
     this.validador=false;
@@ -54,26 +58,32 @@ export class SimulacaoComponent implements OnInit {
         numeroContratoEmprestimo:this.formSimulacao.value.numeroContratoEmprestimo,
         valorSegurado:this.formSimulacao.value.valorSegurado}
 
+        simulacaoInsert.dataNascimento = `${simulacaoInsert.dataNascimento.split('-')[2]}/${simulacaoInsert.dataNascimento.split('-')[1]}/${simulacaoInsert.dataNascimento.split('-')[0]}`
+        simulacaoInsert.fimContratoEmprestimo = `${simulacaoInsert.fimContratoEmprestimo.split('-')[2]}/${simulacaoInsert.fimContratoEmprestimo.split('-')[1]}/${simulacaoInsert.fimContratoEmprestimo.split('-')[0]}`
 
-
-        
-        console.log("------------------")
-        console.log(simulacaoInsert);  
-        console.log("------------------")
-        console.log(this.formSimulacao.value);
-       /*
-        this.simulacaoService.createSimulacao(simulacaoInsert).subscribe(
-          (r)=>{
-              console.log(r);
+  
+        this.simulacaoService.createSimulacao(simulacaoInsert).pipe(take(1)).subscribe(
+          (r:any)=>{
+            this.simulacaoInsertRet=r.body.data;
+              console.log(this.simulacaoInsertRet);
+              this.resultadoPost=true;
+              this.valorTotalPremio=`R$ ${this.simulacaoInsertRet.valorTotalPremio}`;
+              this.produtoEscolhido=this.simulacaoInsertRet.produtoEscolhido;
           },
-          e=>{
-            console.log(e);
+          err => {
+            this.errorRetorno = err.error;
+            this.validador=true;
+
+            if(this.errorRetorno.status==404){
+              this.error=this.errorRetorno.message;
+            }else if(this.errorRetorno.status==422){
+              this.errorRetorno.errors.forEach(element=>{
+                this.error=this.error+"  "+element.messege;
+              })
+            }
           }
           );
-         */ 
-        this.resultadoPost=true;
-        this.valorTotalPremio='234.2322';
-        this.produtoEscolhido='produto1';
+         
       } 
     }
 
