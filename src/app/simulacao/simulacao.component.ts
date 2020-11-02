@@ -66,6 +66,7 @@ export class SimulacaoComponent implements OnInit {
           (r:any)=>{
             this.simulacaoInsertRet=r.body.data;
               console.log(this.simulacaoInsertRet);
+              this.validador=false;
               this.resultadoPost=true;
               this.valorTotalPremio=`R$ ${this.simulacaoInsertRet.valorTotalPremio}`;
               this.produtoEscolhido=this.simulacaoInsertRet.produtoEscolhido;
@@ -73,6 +74,7 @@ export class SimulacaoComponent implements OnInit {
           err => {
             this.errorRetorno = err.error;
             this.validador=true;
+            this.resultadoPost=false;
 
             if(this.errorRetorno.status==404){
               this.error=this.errorRetorno.message;
