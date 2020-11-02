@@ -1,11 +1,12 @@
 # AppSimulacao
 ### Executar
-1. Instalar Nodjs
+1. Instalar Nodejs
 2. npm install -g @angular/cli
 3. git clone https://github.com/michelzarpe/app-simulacao.git
 4. cd app-simulacao
-5. ng serve --o
-6. http://localhost:4200/
+5. npm i
+6. ng serve --o
+7. http://localhost:4200/
 
 ### Versão
 1. node --version: v10.16.0
